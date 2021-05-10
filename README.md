@@ -23,13 +23,23 @@ Option B
 3) Calculate the AOV.
 
 # Q2
+Platfom: Chrome
 a)
-SELECT Orders.OrderID, Shippers.ShipperName
-FROM Orders
-INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
-WHERE ShipperName = 'Speedy Express';
+SELECT COUNT(OrderID) AS Orders 
+FROM Orders, Shippers 
+WHERE Shippers.ShipperID = Orders.ShipperID AND Shippers.ShipperName = "Speedy Express"
 
 Thus, we have 54 orders shipped by Speedy Express.
 
 b)
+
+SELECT LastName FROM Employees
+INNER JOIN (SELECT EmployeeID, count(EmployeeID) as num FROM Orders AS P 
+GROUP BY EmployeeID ORDER BY num DESC LIMIT 1) AS P 
+WHERE Employees.EmployeeID = P.EmployeeID
+
+Thus, the last name of the employee with most orders is Peacock.
+
+c)
+
 
