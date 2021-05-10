@@ -42,4 +42,11 @@ Thus, the last name of the employee with most orders is Peacock.
 
 c)
 
+SELECT Products.ProductID, Products.ProductName, SUM(Quantity) AS TotalTimesOrdered 
+FROM  Customers, OrderDetails, Orders, Products 
+WHERE Customers.Country = "Germany" AND Customers.CustomerID = Orders.CustomerID AND Orders.OrderID = OrderDetails.OrderID AND OrderDetails.ProductID = Products.ProductID
+GROUP BY Products.ProductName 
+ORDER BY TotalTimesOrdered DESC 
+LIMIT 1;
 
+Thus, the  Boston Crab Meat was ordered most by customers in Germany.  
